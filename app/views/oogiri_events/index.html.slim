@@ -1,0 +1,19 @@
+h1 大喜利イベント一覧
+
+.nav.justify-content-end
+  = link_to '新規登録', new_oogiri_event_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = OogiriEvent.human_attribute_name(:title)
+      th = OogiriEvent.human_attribute_name(:created_at)
+      th
+  tbody
+    - @oogiri_events.each do | oogiri_event |
+      tr
+        td = link_to oogiri_event.title, oogiri_event
+        td = oogiri_event.created_at
+        td
+           = link_to '編集', edit_oogiri_event_path(oogiri_event), class: 'btn btn-primary mr-3'

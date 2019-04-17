@@ -1,0 +1,20 @@
+h1 大喜利イベントの詳細
+
+.nav.justify-content-end
+  = link_to '大喜利イベント一覧', oogiri_events_path, class: 'nav-link'
+
+table.table.table-hover
+  tbody
+    tr
+      th = OogiriEvent.human_attribute_name(:title)
+      td = @oogiri_event.title
+    tr
+      th = OogiriEvent.human_attribute_name(:description)
+      // 文字列内の改行を<br>タグなどに変換して安全なHTML形式に変換
+      td = simple_format(h(@oogiri_event.description), {}, sanitize: false, wrapper_tag: "div")
+    tr
+      th = OogiriEvent.human_attribute_name(:created_at)
+      td = @oogiri_event.created_at
+    tr
+      th = OogiriEvent.human_attribute_name(:updated_at)
+      td = @oogiri_event.updated_at
