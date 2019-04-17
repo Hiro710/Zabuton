@@ -13,12 +13,29 @@ class OogiriEventsController < ApplicationController
   end
 
   def create
-    oogiri_event = OogiriEvent.new(oogiri_event_params)
-    oogiri_event.save!
-    redirect_to oogiri_events_url, notice: "新たに「#{oogiri_event.title}」を登録しました。"
+    @oogiri_event = OogiriEvent.new(oogiri_event_params)
+
+    if @oogiri_event.save
+      redirect_to @oogiri_event, notice: "イベント「@oogiri_event.title」を登録しました。"
+    else 
+      render :new
+    end
   end
 
   def edit
+    @oogiri_event = OogiriEvent.find(params[:id])
+  end
+
+  def update
+    oogiri_event = OogiriEvent.find(params[:id])
+    oogiri_event.update!(oogiri_event_params)
+    redirect_to oogiri_events_url, notice: "イベント「#{oogiri_event.title}」を更新しました。"
+  end
+
+  def destroy
+    oogiri_event = OogiriEvent.find(params[:id])
+    oogiri_event.destroy
+    redirect_to oogiri_events_url, notice: "イベント「#{oogiri_event.title}」を削除しました。"
   end
 
 

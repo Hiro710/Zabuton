@@ -1,2 +1,6 @@
-h1 OogiriEvents#edit
-p Find me in app/views/oogiri_events/edit.html.slim
+h1 イベントの編集
+
+.nav.justify-content-end
+  = link_to '大喜利イベント一覧', oogiri_events_path, class: 'nav-link'
+
+= render partial: 'form', locals: { oogiri_event: @oogiri_event }

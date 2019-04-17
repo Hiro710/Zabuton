@@ -17,3 +17,4 @@ table.table.table-hover
         td = oogiri_event.created_at
         td
            = link_to '編集', edit_oogiri_event_path(oogiri_event), class: 'btn btn-primary mr-3'
+           = link_to '削除', oogiri_event, method: :delete, data: { confirm: "イベント「#{oogiri_event.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
