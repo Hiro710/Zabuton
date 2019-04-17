@@ -1,24 +1,11 @@
-# README
+大喜利&お笑いイベント情報アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### 使用方法
 
-Things you may want to cover:
+git clone リポジトリURL
 
-* Ruby version
+cd zabuton
 
-* System dependencies
+rails db:migrate
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+bin/rails s (=> localhost:3000)
