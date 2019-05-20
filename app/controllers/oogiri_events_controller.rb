@@ -16,6 +16,14 @@ class OogiriEventsController < ApplicationController
   def create
     @oogiri_event = current_user.oogiri_events.new(oogiri_event_params)
 
+    # params[:back]で"戻る"という文字列を得て、「戻る」ボタンが押されたら現在の入力内容を保持したまま
+    # 新規イベント登録入力フォームを表示する。「登録」ボタンが押されたら受け取ったパラメータを元に登録して
+    # 一覧画面に戻る
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @oogiri_event.save
       # デバッグ用にログ出力させたい場合
       # logger.debug "イベント： #{@oogiri_event.attributes.inspect}"
