@@ -1,0 +1,16 @@
+h1 登録内容の確認
+
+= form_with model: @oogiri_event, local: true do |f|
+  table.table.table-hover
+    tbody
+      tr
+        th = OogiriEvent.human_attribute_name(:title)
+        td = @oogiri_event.title
+        = f.hidden_field :title
+      tr
+        th = OogiriEvent.human_attribute_name(:description)
+        td = simple_format(@oogiri_event.description)
+        = f.hidden_field :description
+  .nav.justify-content-end
+    = f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3'
+    = f.submit '登録', class: 'btn btn-primary'

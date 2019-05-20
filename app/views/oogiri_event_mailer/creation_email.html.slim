@@ -1,0 +1,10 @@
+/ メイラーの実装、テンプレート(HTML形式)
+| 以下のイベントを新規登録しました。
+
+ul
+  li
+    | イベント名：
+    = @oogiri_event.title
+  li
+    | 詳しい説明：
+    = simple_format(@oogiri_event.description)
