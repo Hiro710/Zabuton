@@ -29,7 +29,6 @@ table.table.table-hover
       / 降順ソート sort_link(@q, :title, default_order: :desc)
       / 複合的な条件ソート sort_link(@q, :title, [:title, "created_at desc"])
       th = sort_link(@q, :title)
-      th = OogiriEvent.human_attribute_name(:title)
       th = OogiriEvent.human_attribute_name(:created_at)
       th
   tbody
