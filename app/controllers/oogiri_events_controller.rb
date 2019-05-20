@@ -1,11 +1,12 @@
 class OogiriEventsController < ApplicationController
+  # フィルタを使って重複(ここではshow, edit, update, destroy)を避ける
+  before_action :set_oogirievent, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @oogiri_events = OogiriEvent.all.order(created_at: :desc)
+    @oogiri_events = current_user.oogiri_events.order(created_at: :desc)
   end
 
   def show
-    @oogiri_event = OogiriEvent.find(params[:id])
   end
 
   def new
@@ -13,29 +14,28 @@ class OogiriEventsController < ApplicationController
   end
 
   def create
-    @oogiri_event = OogiriEvent.new(oogiri_event_params)
+    @oogiri_event = current_user.oogiri_events.new(oogiri_event_params)
 
     if @oogiri_event.save
-      redirect_to @oogiri_event, notice: "イベント「@oogiri_event.title」を登録しました。"
-    else 
+      # デバッグ用にログ出力させたい場合
+      # logger.debug "イベント： #{@oogiri_event.attributes.inspect}"
+      redirect_to @oogiri_event, notice: "イベント「#{@oogiri_event.title}」を登録しました。"
+    else
       render :new
     end
   end
 
   def edit
-    @oogiri_event = OogiriEvent.find(params[:id])
   end
 
   def update
-    oogiri_event = OogiriEvent.find(params[:id])
-    oogiri_event.update!(oogiri_event_params)
-    redirect_to oogiri_events_url, notice: "イベント「#{oogiri_event.title}」を更新しました。"
+    @oogiri_event.update!(oogiri_event_params)
+    redirect_to oogiri_events_url, notice: "イベント「#{@oogiri_event.title}」を更新しました。"
   end
 
   def destroy
-    oogiri_event = OogiriEvent.find(params[:id])
-    oogiri_event.destroy
-    redirect_to oogiri_events_url, notice: "イベント「#{oogiri_event.title}」を削除しました。"
+    @oogiri_event.destroy
+    redirect_to oogiri_events_url, notice: "イベント「#{@oogiri_event.title}」を削除しました。"
   end
 
 
@@ -43,5 +43,9 @@ class OogiriEventsController < ApplicationController
 
   def oogiri_event_params
     params.require(:oogiri_event).permit(:title, :description)
+  end
+
+  def set_oogirievent
+    @oogiri_event = current_user.oogiri_events.find(params[:id])
   end
 end

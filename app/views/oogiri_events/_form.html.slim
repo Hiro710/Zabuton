@@ -1,0 +1,16 @@
+/ errors.present?で検証エラーの有無を調べ、エラーがある時のみエラーメッセージ表示
+- if oogiri_event.errors.present?
+  ul#error_explanation
+    - oogiri_event.errors.full_messages.each do |message|
+      li = message
+
+/ イベントの入力フォーム
+= form_with model: oogiri_event, local: true do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', id: 'oogiri_event_title'
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 5, class: 'form-control', id: 'oogiri_event_description'
+  .nav.justify-content-end
+    = f.submit nil, class: 'btn btn-primary'

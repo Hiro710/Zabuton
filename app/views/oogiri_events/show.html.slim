@@ -10,8 +10,9 @@ table.table.table-hover
       td = @oogiri_event.title
     tr
       th = OogiriEvent.human_attribute_name(:description)
-      // 文字列内の改行を<br>タグなどに変換して安全なHTML形式に変換
-      td = simple_format(h(@oogiri_event.description), {}, sanitize: false, wrapper_tag: "div")
+      / 文字列内の改行を<br>タグなどに変換して安全なHTML形式に変換
+      / URLを含む詳しい説明を画面に表示する
+      td = auto_link(simple_format(h(@oogiri_event.description), {}, sanitize: false, wrapper_tag: "div"))
     tr
       th = OogiriEvent.human_attribute_name(:created_at)
       td = @oogiri_event.created_at

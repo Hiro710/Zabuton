@@ -2,14 +2,25 @@ doctype html
 html
   head
     title
-      | OogiriApp
+      | 大喜利イベント情報館
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand OogiriApp
+      navbar-brand 大喜利イベント情報館
+
+      ul.navbar-nav.ml-auto
+        - if current_user
+          li.nav-item = link_to 'イベント一覧', oogiri_events_path, class: 'nav-link'
+          / ログインユーザーが管理者権限を持っている場合のみナビゲーションバーにユーザー一覧へのリンクを表示する
+          - if current_user.admin?
+            li.nav-item = link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
+          li.nav-item = link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+        - else
+          li.nav-item = link_to 'ログイン', login_path, class: 'nav-link'
+
     .container
       - if flash.notice.present?
         .alert.alert-success = flash.notice

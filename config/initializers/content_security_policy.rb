@@ -22,4 +22,6 @@
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
-# Rails.application.config.content_security_policy_report_only = true
+# 以下のコメントアウトを外すとスクリプトがポリシー違反していても実行はブロックされず、
+# 指定したURLに違反内容が報告される
+Rails.application.config.content_security_policy_report_only = true
