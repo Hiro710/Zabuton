@@ -30,6 +30,8 @@ class OogiriEventsController < ApplicationController
       # デバッグ用にログ出力させたい場合
       # logger.debug "イベント： #{@oogiri_event.attributes.inspect}"
 
+      # イベント新規登録後にメールを送信する
+      OogiriEventMailer.creation_email(@oogiri_event).deliver_now
       redirect_to @oogiri_event, notice: "イベント「#{@oogiri_event.title}」を登録しました。"
     else
       render :new
