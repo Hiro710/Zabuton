@@ -25,6 +25,10 @@ h1 大喜利イベント一覧
 table.table.table-hover
   thead.thead-default
     tr
+      / 一覧画面にソート機能を実装する
+      / 降順ソート sort_link(@q, :title, default_order: :desc)
+      / 複合的な条件ソート sort_link(@q, :title, [:title, "created_at desc"])
+      th = sort_link(@q, :title)
       th = OogiriEvent.human_attribute_name(:title)
       th = OogiriEvent.human_attribute_name(:created_at)
       th

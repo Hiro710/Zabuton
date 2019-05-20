@@ -5,7 +5,7 @@ class OogiriEventsController < ApplicationController
   def index
     # 名称による検索
     @q = current_user.oogiri_events.ransack(params[:q])
-    @oogiri_events = @q.result(distict: true).recent
+    @oogiri_events = @q.result(distict: true)
   end
 
   def show
