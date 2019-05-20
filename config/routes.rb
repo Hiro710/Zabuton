@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   end
 
   root to: 'oogiri_events#index'
-  resources :oogiri_events
+  resources :oogiri_events do
+    # 確認画面 /oogiri_events/new/confirm というURLをconfirm_newアクションに対応付ける
+    post :confirm, action: :confirm_new, on: :new
+  end
 
 end

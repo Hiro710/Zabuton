@@ -9,6 +9,9 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # 何も記述が無い場合はtrueとして動作する
+  config.assets.compile = true
+
   # Show full error reports.
   # エラー画面の切り分け、デバッグ用エラー画面表示の時はtrue、本番用エラー画面表示の時はfalse
   config.consider_all_requests_local = true
@@ -51,6 +54,7 @@ Rails.application.configure do
   config.assets.debug = true
 
   # Suppress logger output for asset requests.
+  # アセットへのリクエストに関するログ出力を抑制してログの視認性を向上させる
   config.assets.quiet = true
 
   # Raises error for missing translations

@@ -38,6 +38,12 @@ class OogiriEventsController < ApplicationController
     redirect_to oogiri_events_url, notice: "イベント「#{@oogiri_event.title}」を削除しました。"
   end
 
+  # 確認画面を表示するアクション
+  def confirm_new
+    @oogiri_event = current_user.oogiri_events.new(oogiri_event_params)
+    render :new unless @oogiri_event.valid?
+  end
+
 
   private
 
