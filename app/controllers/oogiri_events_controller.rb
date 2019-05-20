@@ -3,7 +3,9 @@ class OogiriEventsController < ApplicationController
   before_action :set_oogirievent, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @oogiri_events = current_user.oogiri_events.order(created_at: :desc)
+    # 名称による検索
+    @q = current_user.oogiri_events.ransack(params[:q])
+    @oogiri_events = @q.result(distict: true).recent
   end
 
   def show
@@ -27,7 +29,7 @@ class OogiriEventsController < ApplicationController
     if @oogiri_event.save
       # デバッグ用にログ出力させたい場合
       # logger.debug "イベント： #{@oogiri_event.attributes.inspect}"
-      
+
       redirect_to @oogiri_event, notice: "イベント「#{@oogiri_event.title}」を登録しました。"
     else
       render :new

@@ -68,3 +68,5 @@ gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap'
 gem 'rails_autolink'
+# 一覧画面等での検索機能の実装で使われることが多い
+gem 'ransack'

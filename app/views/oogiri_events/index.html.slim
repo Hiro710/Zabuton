@@ -1,5 +1,23 @@
 h1 大喜利イベント一覧
 
+/ 検索機能実装
+= search_form_for @q, class: 'mb-5' do |f|
+  / タイトルによる検索
+  .form-group.row
+    = f.label :title_cont, 'イベント名', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :title_cont, class: 'form-control'
+  / 登録日時による検索(_gteq という検索マッチャーは「該当項目が入力された値と同じか、それより大きいこと」を条件にした時に使う)
+  .form-group.row
+    = f.label :created_at_gteq, '登録日時', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :created_at_gteq, class: 'form-control'
+  .form-group
+    .nav.justify-content-end
+      = f.submit class: 'btn btn-outline-primary'
+
+
+
 .nav.justify-content-end
   = link_to '新規イベント登録', new_oogiri_event_path, class: 'btn btn-primary'
 
