@@ -59,9 +59,9 @@ class OogiriEventsController < ApplicationController
 
 
   private
-
+  # Strong Parameters(許可するパラメータのキーを指定)
   def oogiri_event_params
-    params.require(:oogiri_event).permit(:title, :description)
+    params.require(:oogiri_event).permit(:title, :description, :image)
   end
 
   def set_oogirievent

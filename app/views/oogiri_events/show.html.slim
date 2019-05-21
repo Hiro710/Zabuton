@@ -14,6 +14,10 @@ table.table.table-hover
       / URLを含む詳しい説明を画面に表示する
       td = auto_link(simple_format(h(@oogiri_event.description), {}, sanitize: false, wrapper_tag: "div"))
     tr
+      / @oogiri_event.image.attached?という判定メソッドで実際に画像が添付されている時だけimage_tagで画像を表示
+      th = OogiriEvent.human_attribute_name(:image)
+      td = image_tag @oogiri_event.image if @oogiri_event.image.attached?
+    tr
       th = OogiriEvent.human_attribute_name(:created_at)
       td = @oogiri_event.created_at
     tr

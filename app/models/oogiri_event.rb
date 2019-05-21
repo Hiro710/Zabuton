@@ -5,6 +5,8 @@ class OogiriEvent < ApplicationRecord
   validate :validate_title_not_including_comma
 
   belongs_to :user
+  # Active Storageで画像を添付できる様にする
+  has_one_attached :image
 
   # scopeを使ったカスタムのクエリー用メソッドの定義
   scope :recent, -> { order(created_at: :desc) }
