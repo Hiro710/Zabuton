@@ -6,6 +6,14 @@ class OogiriEventsController < ApplicationController
     # 名称による検索
     @q = current_user.oogiri_events.ransack(params[:q])
     @oogiri_events = @q.result(distict: true)
+
+    # CSV出力実装部分
+    respond_to do |format|
+      format.html
+      format.csv {
+        send_data @oogiri_events.generate_csv, filename: "oogiri_events-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+      }
+    end
   end
 
   def show

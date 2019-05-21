@@ -23,6 +23,20 @@ class OogiriEvent < ApplicationRecord
     []
   end
 
+  # CSV出力
+  def self.csv_attributes
+    ["title", "description", "created_at", "updated_at"]
+  end
+
+  def self.generate_csv
+    CSV.generate(headers: true) do |csv|
+      csv << csv_attributes
+      all.each do |oogiri_event|
+        csv << csv_attributes.map{ |attr| oogiri_event.send(attr) }
+      end
+    end
+  end
+
   # 自作の検証用メソッドの追加(オブジェクト外部から呼ばれることは想定していない為 private)
   private
 
