@@ -46,6 +46,11 @@ class OogiriEventsController < ApplicationController
 
       # イベント新規登録後にメールを送信する
       OogiriEventMailer.creation_email(@oogiri_event).deliver_now
+      # ジョブの呼び出し
+      # 日時指定してジョブ実行(例：翌日の正午にジョブ実行する場合)
+      # SampleJob.set(wait_until: Date.tomorrow.noon).perform_later
+      # 一週間後にジョブ実行 SampleJob.set(wait:1.week).perform_later
+      SampleJob.perform_later
       redirect_to @oogiri_event, notice: "イベント「#{@oogiri_event.title}」を登録しました。"
     else
       render :new

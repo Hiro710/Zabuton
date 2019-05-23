@@ -72,3 +72,5 @@ gem 'rails_autolink'
 gem 'ransack'
 # ページネーション
 gem 'kaminari'
+# 非同期処理や定期実行を行う(Jobスケジューリング)
+gem 'sidekiq'
