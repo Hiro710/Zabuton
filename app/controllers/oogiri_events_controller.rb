@@ -16,6 +16,11 @@ class OogiriEventsController < ApplicationController
     end
   end
 
+  def import
+    current_user.oogiri_events.import(params[:file])
+    redirect_to oogiri_events_url, notice: "イベントを追加しました"
+  end
+
   def show
   end
 

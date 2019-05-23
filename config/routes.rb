@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :oogiri_events do
     # 確認画面 /oogiri_events/new/confirm というURLをconfirm_newアクションに対応付ける
     post :confirm, action: :confirm_new, on: :new
+    # CSV入力のimportアクションの為のルーティング
+    post :import, on: :collection
   end
 
 end

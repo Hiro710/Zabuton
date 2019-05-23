@@ -37,6 +37,16 @@ class OogiriEvent < ApplicationRecord
     end
   end
 
+  # CSV入力
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      oogiri_event = new
+      # 以下のsliceはslice("title", "description", "created_at", "updated_at")と同じ意味
+      oogiri_event.attributes = row.to_hash.slice(*csv_attributes)
+      oogiri_event.save!
+    end
+  end
+
   # 自作の検証用メソッドの追加(オブジェクト外部から呼ばれることは想定していない為 private)
   private
 
