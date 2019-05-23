@@ -5,7 +5,8 @@ class OogiriEventsController < ApplicationController
   def index
     # 名称による検索
     @q = current_user.oogiri_events.ransack(params[:q])
-    @oogiri_events = @q.result(distict: true)
+    # ページ番号に対応するデータの範囲を検索する(kaminariのpageスコープを使う)、per(30)で30件まで表示
+    @oogiri_events = @q.result(distict: true).page(params[:page]).per(30)
 
     # CSV出力実装部分
     respond_to do |format|

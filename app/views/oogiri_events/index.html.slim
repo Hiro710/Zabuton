@@ -22,6 +22,11 @@ h1 大喜利イベント一覧
   = link_to '新規イベント登録', new_oogiri_event_path, class: 'btn btn-primary'
 
 .mb-3
+  / 現在のページ情報、他のページへ移動する為のリンク表示(paginateヘルパー)
+  = paginate @oogiri_events
+  / 全データ件数情報(page_entries_infoヘルパー)
+  = page_entries_info @oogiri_events
+
 table.table.table-hover
   thead.thead-default
     tr
