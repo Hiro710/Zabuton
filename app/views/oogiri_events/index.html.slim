@@ -38,7 +38,9 @@ table.table.table-hover
       th
   tbody
     - @oogiri_events.each do | oogiri_event |
-      tr
+      / 削除動作をコントローラからjavascriptを返して実行する(Ajax)
+      / サーバ側でも削除されたイベントに対応するDOM要素を指定する
+      tr id = "oogiri_event_#{oogiri_event.id}"
         td = link_to oogiri_event.title, oogiri_event
         td = oogiri_event.created_at
         td

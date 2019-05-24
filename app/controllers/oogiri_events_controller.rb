@@ -68,7 +68,7 @@ class OogiriEventsController < ApplicationController
   def destroy
     @oogiri_event.destroy
     # Ajaxリクエストを受け取ってイベントの削除を行う
-    head :no_content
+    # head :no_content
   end
 
   # 確認画面を表示するアクション
