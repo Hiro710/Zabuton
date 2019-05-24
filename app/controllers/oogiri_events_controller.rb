@@ -67,7 +67,8 @@ class OogiriEventsController < ApplicationController
 
   def destroy
     @oogiri_event.destroy
-    redirect_to oogiri_events_url, notice: "イベント「#{@oogiri_event.title}」を削除しました。"
+    # Ajaxリクエストを受け取ってイベントの削除を行う
+    head :no_content
   end
 
   # 確認画面を表示するアクション
