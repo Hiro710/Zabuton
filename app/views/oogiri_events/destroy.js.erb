@@ -1,0 +1,7 @@
+// レスポンスとして返すjavascriptコード(destroyアクションに対応するテンプレート)
+document.querySelector("#oogiri_event_<%= @oogiri_event.id %>").style.display = 'none';
+
+// イベントの削除と同時にメッセージを表示する
+var message = document.createElement('p');
+message.innerText = 'イベント「<%= @oogiri_event.title %>」を削除しました。残るイベントは<%= OogiriEvent.count %>件です。';
+document.querySelector('table').insertAdjacentElement('beforebegin', message);
