@@ -2,10 +2,12 @@
 
 ### 使用方法
 
-git clone リポジトリURL
+$ git clone リポジトリURL
 
-cd zabuton
+$ cd zabuton
 
-bin/rails db:migrate
+$ yarn install --check-files
 
-bin/rails s (=> localhost:3000)
+$ bin/rails db:migrate
+
+$ bin/rails s (=> localhost:3000)
